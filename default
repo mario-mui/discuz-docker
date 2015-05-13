@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    server_name	discuz.trantect.com;
+    access_log 	/var/log/nginx/access.log;
+    error_log  	/var/log/nginx/error.log;
+    root	/server;
+ 
+    location / {
+	rewrite ^/([a-zA-Z]+)-([a-zA-Z]+)-([0-9]+).html$ /$1.php?$2=$3;
+        index index.html index.htm index.php;
+    }
+ 
+    location ~ \.php$ {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass  unix:/var/run/php5-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+       # add_after_body /template/default/stats.html;
+    }
+}
