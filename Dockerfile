@@ -10,7 +10,8 @@ RUN apt-get update
 # Install
 RUN apt-get -y --force-yes install supervisor nginx mysql-server mysql-client php5 php5-gd php5-fpm php5-mysql php5-mcrypt
 
-#RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+#must be
+RUN sed -e 's/;daemonize = yes/daemonize = no/' -i /etc/php5/fpm/php-fpm.conf
 
 #add default nginx conf
 ADD ./default /etc/nginx/sites-available/default
