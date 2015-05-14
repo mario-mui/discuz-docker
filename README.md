@@ -1,5 +1,10 @@
 ### Welcome to discuz-docker ###
 
+#### chmod ####
+```
+chmod 777 data/ -R
+
+```
 
 #### project build####
 ```
@@ -14,7 +19,7 @@ docker run -p 80:80 discuz
 ```
 ##### edit hosts file ####
 ```
-sudo echo '127.0.0.1 discuz.trantect.com' >> /etc/hosts
+add '127.0.0.1 discuz.trantect.com' to /etc/hosts file
 ```
 
 ##### view discuz #####
