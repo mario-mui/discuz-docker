@@ -5,7 +5,7 @@ MAINTAINER Mario.Ma <mario.ma@trantect.com>
 WORKDIR /server
 
 # Update apt-get local index
-RUN apt-get -qq update
+RUN apt-get update
 
 # Install
 RUN apt-get -y --force-yes install supervisor nginx mysql-server mysql-client php5 php5-gd php5-fpm php5-mysql php5-mcrypt
@@ -23,7 +23,8 @@ ADD ./supervisord.conf /etc/supervisor/supervisord.conf
 ADD ./ /server
 
 RUN service mysql start && \
-    mysql -uroot < /server/discuz.sql
+    mysql -uroot < /server/discuz.sql && \
+    mysqladmin -u root password 'abc123_'
 
 # Expose ports
 EXPOSE 80
